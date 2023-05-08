@@ -1,6 +1,6 @@
 import os
 import base64
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -34,6 +34,10 @@ def process_video(video_path):
     result = "ASL recognition result"  # Replace this with the actual result from your model
     return result
 
+# Disable caching for CSS files
+@app.route('/static/css/<path:path>')
+def send_css(path):
+    return send_from_directory('static/css', path, cache_timeout=0)
 
 if __name__ == '__main__':
     app.run(port=5003, debug=True)
