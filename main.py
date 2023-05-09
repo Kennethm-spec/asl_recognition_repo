@@ -39,5 +39,10 @@ def process_video(video_path):
 def send_css(path):
     return send_from_directory('static/css', path, cache_timeout=0)
 
+# Disable caching for JS files
+@app.route('/static/js/<path:path>')
+def send_js(path):
+    return send_from_directory('static/js', path, cache_timeout=0)
+
 if __name__ == '__main__':
     app.run(port=5003, debug=True)

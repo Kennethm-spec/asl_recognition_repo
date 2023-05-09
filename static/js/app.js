@@ -16,9 +16,9 @@ startButton.addEventListener("click", async () => {
     startButton.disabled = true;
     stopButton.disabled = false;
 
-    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
     video.srcObject = stream;
-
+    console.log("here")
     interval = setInterval(captureAndSendFrame, 1000); // Send a frame every 1000ms (1 second)
     // TODO for Kenneth, maybe send images every 100 ms then server will just wait until 1 second
     // this will give server 10 images to work with.
@@ -34,6 +34,7 @@ stopButton.addEventListener("click", () => {
 
 async function captureAndSendFrame() {
     const canvas = document.createElement("canvas");
+    console.log(video.videoWidth, video.videoHeight)
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     const context = canvas.getContext("2d");
