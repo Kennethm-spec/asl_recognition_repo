@@ -1,5 +1,6 @@
 import os
 import base64
+import numpy as np
 from flask import Flask, request, jsonify, render_template, send_from_directory
 
 app = Flask(__name__)
@@ -13,26 +14,16 @@ os.makedirs(VIDEO_FOLDER, exist_ok=True)
 def index():
     return render_template('index.html')
 
-
-@app.route('/recognize', methods=['POST'])
+@app.route('/api/recognize', methods=['POST'])
 def recognize():
     data = request.get_json()
-    video_data = base64.b64decode(data['video'])
-
-    video_path = os.path.join(app.config['VIDEO_FOLDER'], 'asl_video.webm')
-
-    with open(video_path, 'wb') as f:
-        f.write(video_data)
-
-    # Process the video with your ASL recognition model here
-    result = process_video(video_path)  # Replace this function with the actual ASL recognition model
-    return jsonify({'result': result})
-
-
-def process_video(video_path):
-    # Add your ASL recognition model code here
-    result = "ASL recognition result"  # Replace this with the actual result from your model
-    return result
+    img_data = base64.b64decode(data['image'])
+    img_array = np.frombuffer(img_data, dtype=np.uint8)
+    print(f'here is img_array -> {img_array}')
+    print(f'{img_array.size}')
+    # TODO: do somethign with image array
+    sign = 'hello world'  # return hello world for now
+    return jsonify({'sign': sign})
 
 # Disable caching for CSS files
 @app.route('/static/css/<path:path>')
