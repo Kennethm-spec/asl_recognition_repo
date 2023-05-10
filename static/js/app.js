@@ -52,7 +52,9 @@ async function captureAndSendFrame() {
 
         const result = await response.json();
         recognizedSigns.push(result.sign);
-        updateResultDisplay();
+        console.log(result.sign)
+        // updateResultDisplay();
+        // resultDiv.innerHTML = `<p>${result.sign}</p>`;
     } catch (error) {
         console.error("Error sending frame to the server:", error);
     }
@@ -68,6 +70,7 @@ function updateResultDisplay() {
         resultDiv.innerHTML += `<li>${sign}</li>`;
     });
     resultDiv.innerHTML += "</ul>";
+    
 }
 
 // let recordedChunks = [];
