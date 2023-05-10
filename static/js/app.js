@@ -54,7 +54,7 @@ async function captureAndSendFrame() {
         
         console.log(result.sign);
         console.log(typeof result.sign);
-        console.log(result.options)
+        console.log(result.options); //this contains the array of options
         
         if(result.sign.length > 0){
             recognizedSigns.push(result.sign);
