@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 content_files = {
     'words': {
-        'filepath': 'word_dict.json',
+        'filepath': 'src/app/word_dict.json',
         'compress': True  # means compress the graph data in memory
     }
 }
@@ -22,7 +22,7 @@ alphabet = ['1', '2', '3', 'space', 'del', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H
             'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 labels_ = ['1', '2', '3', 'space', 'del', 'A', 'B', 'C']
 autocomplete = autocomplete_factory(content_files=content_files)
-model = tf.keras.models.load_model("model/")
+model = tf.keras.models.load_model("src/app/model/")
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
